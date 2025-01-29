@@ -1,0 +1,94 @@
+1. Dynamic CSS Variables in Tailwind
+
+<div 
+  style={{ "--width": isCollapsed ? "8rem" : "14rem" }}
+  className="w-[--width] transition-all"
+/>
+Instead of juggling multiple classes for different widths, you can use a CSS variable. This makes animations smooth and keeps your code clean. Perfect for sidebars, panels, or any element that needs smooth width transitions.
+
+2. Data Attribute State Management
+
+<div 
+  data-state={isOpen ? "open" : "closed"}
+  className="data-[state=open]:bg-blue-500"
+/>
+Rather than having multiple className conditions, use data attributes to manage state. Your component stays clean, and you can target any state without JavaScript. Excellent for dropdowns, accordions, or any togglable component.
+
+3. Nested SVG Control
+
+<div 
+  data-collapsed={isCollapsed}
+  className="[&[data-collapsed=true]_svg]:rotate-180"
+>
+  <svg>...</svg>
+</div>
+Want to rotate an icon when a parent changes state? This pattern lets you control nested SVGs without messy class manipulation. Great for expandable sections or navigation arrows.
+
+4. Parent-Child Style Inheritance
+
+<div className="[[data-collapsed=true]_&]:rotate-180">
+  {/* Child inherits rotation when parent has data-collapsed=true */}
+</div>
+This lets you style elements based on their parent's state. Think of it like CSS's child selectors on steroids. Perfect for complex menus or nested components.
+
+(🎥 I've created a YouTube video with hands-on examples if you're interested: https://youtu.be/9z2Ifq-OPEI and here is a link to the code examples on GitHub: https://github.com/bitswired/demos/blob/main/projects/10-tailwind-tricks-from-shadcn/README.md )
+
+5. Group Data States
+
+<div className="group" data-collapsed={isCollapsed}>
+  <div className="group-data-[collapsed=true]:rotate-180"/>
+</div>
+Need multiple elements to react to the same state? Group them together and control them all at once. Ideal for coordinated animations or state-dependent layouts.
+
+6. Data Slots
+
+<div className="data-[slot=action]:*:hover:mr-0">
+  <div data-slot="action">...</div>
+</div>
+Mark specific parts of your component as "slots" and style them independently. Perfect for hover menus or action buttons that need special behavior.
+
+7. Peer Element Control
+
+<button className="peer">Menu</button>
+<div className="peer-data-[active=true]:bg-blue-500"/>
+Style an element based on its sibling's state. Great for building connected components like form labels or menu items.
+
+8. Named Group Focus
+
+<div className="group/menu">
+  <button className="group-focus-within/menu:bg-blue-500"/>
+</div>
+Handle focus states across multiple elements with named groups. Essential for accessible dropdowns and navigation menus.
+
+9. Group Has Selectors
+
+<div className="group/menu">
+  <div className="group-has-[[data-active=true]]/menu:bg-blue-500"/>
+</div>
+Check if a group contains certain attributes and style accordingly. Perfect for complex state management across components.
+
+10. Variant Props
+
+<button 
+  data-variant={variant}
+  className="data-[variant=ghost]:border-blue-500"
+/>
+Create component variants without complex className logic. Makes it super easy to switch between different styles based on props.
+
+Key Benefits:
+
+Write less JavaScript for styling
+
+Better performance (CSS > JS)
+
+Cleaner component code
+
+Easier state management
+
+More maintainable styles
+
+Let me know if you have any questions about implementing these patterns in your own components!
+
+Happy to answer any questions about implementation details!
+
+What are your best Tailwind tricks?
